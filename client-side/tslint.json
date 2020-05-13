@@ -1,0 +1,24 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**",
+      "build/**",
+      "package.json"
+    ]
+  },
+  "rules": {
+    "quotemark": [false], //import要用“”双引号
+    "semicolon": [false], //声明后面要有分号
+    "interface-name": [true, "never-prefix"], //interface的命名，开头不需要强制为I
+    "object-literal-sort-keys": [false] //调用函数的时候，传入的参数必须按照字母顺序排序，color：’red‘，type：’123‘
+  },
+  "jsRules": {
+  }
+}
+
+
+
