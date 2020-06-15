@@ -1,4 +1,4 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin') //在内存中自动生成 index 页面 
 // const CleanWebpackPlugin = require('clean-webpack-plugin') 需要解构，正确方式如下
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
