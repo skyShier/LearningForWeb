@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import Nav from './pages/Nav';
 import ComponentLife from './pages/ComponentLife';
+import SetStateDemo from './pages/SetStateDemo';
+import IfDemo from './pages/IfDemo';
 
 export class App extends React.Component() {
 
@@ -29,6 +31,8 @@ export class App extends React.Component() {
           <Nav nav={nav1} title="导航1"/>
           <Nav nav={nav2} title="导航2"/>
         </header>
+
+
         <ComponentLife title={this.state.title} />
         <button onClick={ this.clickChanges }>修改title</button>
         //点击时会先执行：componentWillReceiveProps 
@@ -38,6 +42,12 @@ export class App extends React.Component() {
 
         {/* 传入clickChanges 将父级的 clickChange函数传给子集 */}
         <button onClick={ this.clickChange } clickChanges={ this.clickChange }>修改title</button>
+
+
+        <SetStateDemo />
+
+
+        <IfDemo />
       </div>
     );
   }
