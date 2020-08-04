@@ -1,7 +1,6 @@
 import React from 'react';
-import './App.css';
 
-class ComponentLife extends React.Component() {
+class ComponentLife extends React.Component {
 
     constructor(props){
         super(props)
@@ -23,16 +22,16 @@ class ComponentLife extends React.Component() {
     }
     changeHandler = () => {
         this.setState({
-            count: this.state.count += 1,
+            count: this.state.count + 1,
         })
     }
     
-    render(){
-        const { count } = this.state //ES6 解构赋值
+    render() {
+        // const { count } = this.state //ES6 解构赋值
         
         return (
         <div>
-            { count } -- { this.props.title }
+            { this.state.count } -- { this.props.title }
             <button onClick={ this.changeHandler }></button>
             <button onClick={ this.clickChange } clickChanges={ this.clickChange }>修改title</button>
         </div>

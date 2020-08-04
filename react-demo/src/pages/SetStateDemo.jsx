@@ -1,7 +1,6 @@
 import React from 'react';
-import './App.css';
 
-export default class ComponentLife extends React.Component() {
+export default class ComponentLife extends React.Component {
 
     constructor(props){
         super(props)
@@ -32,10 +31,10 @@ export default class ComponentLife extends React.Component() {
         })
     }
 
-    render(){
+    render() {
         return (
         <div>
-            { count }
+            { this.state.count }
             <button onClick={ this.increment.bind(this) }>修改title</button>
         </div>
         )
