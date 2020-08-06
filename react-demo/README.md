@@ -90,78 +90,34 @@ constructor(props){
 
 ### Fetch请求 【FetchDemo
 
+### react-router 【RouterPage
+1）安装路由：npm install react-router-dom --save
+2) 路由的作用：单页面应用（SPA），路由跳转：切换显示视图 
+3）
+<Router>
+    <Route path="/login" component={ Login }></Route>
+    <Route path="/home " component={ Home }></Route>
+</Router>
+
+<BrowserRouter>
+import { BrowserRouter as Router, Router } from 'react-router-dom'
+H5的新特性，主要利用的 history.push ,使用的是/
+如果上线之后，需要后台做一些处理：重定向处理，不然可能会出现 404bug
+<HashRouter>
+import { HashRouter as Router, Router } from 'react-router-dom'
+锚点链接：带#
+
+<Link to="/login"></Link>
+<Link to="/home"></Link>
+点击会跳转到相应的页面，Link的本质是带锚点的a标签<a href="#/login"></a>
+
+
+### react-redux
+React中，状态数据：state
+数据传递有两种方式： props【父传子】
+                  回传事件【字传父】
 
 
 
 
 
-
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
