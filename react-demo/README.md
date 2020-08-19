@@ -116,6 +116,9 @@ import { HashRouter as Router, Router } from 'react-router-dom'
 React中，状态数据：state
 数据传递有两种方式： props【父传子】
                   回传事件【字传父】
+redux和react-redux
+redux：js 的状态管理：creatStore
+react-redux：为了在react中更容易的使用：connect、provider 
 
 
 

@@ -1,9 +1,16 @@
 .App div{
   margin-bottom: 10px;
 }
-p{
-  color: red;
+.App .num {
+  width: 220px;
+  text-align: center;
+  font-size: 30px;
 }
+
+.App .increment {
+  margin: 0 30px 30px 20px;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

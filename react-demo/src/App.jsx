@@ -13,7 +13,13 @@ import pureComponentDemo from './pages/PureComponentDemo';
 import FetchDemo from './pages/FetchDemo';
 import UCenter from './pages/routerPage/UCenter';
 import NotFound from './pages/routerPage/NotFound';
-import Demo from './pages/routerPage/Demo';
+import Demo from './pages/routerPage/Demo'; 
+import Parents from './pages/reactRedux/com/Parents'
+import User from './pages/user'
+import { connect } from "react-redux"
+// import { increment, decrement } from "./actions/counter"
+import * as countActions from "./actions/counter"
+import { bindActionCreators } from "redux"
 
 import { HashRouter as Router, Route, Link, Switch, NavLink, Redirect } from "react-router-dom"
 
@@ -35,6 +41,8 @@ class App extends React.Component {
   render() {
     const nav1 = ['1', '2', '3']
     const nav2 = ['4', '5', '6']
+
+    // const { increment, decrement } = this.props
 
      // 渲染函数
     return (
@@ -145,6 +153,48 @@ class App extends React.Component {
         </Router>
 
         {/* 第十二节：react中的redux */}
+        <Parents />
+              <div className="num">{ this.props.counter }</div>
+        {/* <button onClick={ this.props.onIncrement } className="increment">increment</button>
+        <button onClick={ this.props.onDecrement } >decrement</button> */}
+        {/* <button onClick={ () => increment()} className="increment">increment</button>
+        <button onClick={ () => decrement()} >decrement</button> */}
+        <button onClick={ () => this.props.countActions.increment(10) } className="increment">increment</button>
+        <button onClick={ () => this.props.countActions.decrement(5) } >decrement</button>
+        <User />
+        {/* 
+          -- react-redux的一般解决方案 --
+          click --> action --> middleWare --> reducer
+          connect 连接reducer 和 页面 
+          文件结构：
+              constants： 统一存储变量名
+              actions： 接收方法名和参数，传入reducer，reducer通过参数名决定执行那一段函数
+              reducers： 处理业务逻辑，return state 
+                        combineReducers用来合并reducer
+          所需配置：
+              引入<App/>的index.js页面：在全局<App /> 入口，使用provider包裹
+              中间件：引入<App/>的index.js页面：import { createStore, applyMiddleware } from "redux"
+              使用页面：
+                1）在使用的组件页面，使用connect进行连接
+                  connect(mapStateToProps, mapDispatchToProps)(App)
+                2）export default connect()(App)
+                3）事件绑定的方法：
+                  获取声明的 action 中所暴露的方法，括号内进行传参
+                  import * as countActions from "./actions/counter"
+                  <button onClick={ () => this.props.countActions.decrement(5) } >decrement</button>
+                 
+                3）读取数据的方案：见下方 mapStateToProps，然后通过 this.props.counter 读取
+                4）修改数据的方案： 见下方 mapDispatchToProps
+                                import { bindActionCreators } from "redux"
+                                bindActionCreators 参数传递
+          -- 安装中间件 --
+          cnpm install --save-dev redux-logger
+          -- reducer --
+              有两个参数 state 和 action
+              state：仓库中存的状态
+              action：通过 action 改变 state 状态，action.type 不同的值，可以做不同的修改
+        */}
+
 
       </div>
     );
@@ -152,4 +202,24 @@ class App extends React.Component {
  
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  console.log(state)
+  return{
+    counter: state.counter
+  }
+}
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     increment: () => {dispatch(increment())},
+//     decrement: () => {dispatch(decrement())}
+//   }
+// }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    countActions: bindActionCreators(countActions,dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
