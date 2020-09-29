@@ -190,7 +190,7 @@
 
 <!-- 前端如何渲染几万条数据不卡住页面？ -->
 <!-- https://blog.csdn.net/wu1737149371/article/details/88329830?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.compare&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.compare -->
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -229,6 +229,92 @@ setTimeout(() => {
     }
     loop();
 }, 0);
+</script>
+</body>
+</html> -->
+
+<!-- 构造函数案例：随机生成方块 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>构造函数</title>
+<style>
+    .container{
+    width: 800px;
+    height: 800px;
+    background-color: #000;
+    position: relative;
+}
+</style>
+</head>
+<body>
+<div class="container"></div>
+<script>
+/*创建工具对象，生成随机整数，可以随机生成方块坐标和背景颜色*/
+var Tools={
+    getRandom:function (min,max) {
+        return Math.floor(Math.random()*(max-min+1)+min);
+    }
+}
+/*方块对象，创建方块的构造函数*/
+function Box(parentDiv,options) {
+    //参数对象，用来传递需要设置的样式参数
+    options=options||{};
+    this.backgroundColor=options.backgroundColor||'red';
+    this.width=options.width||20;
+    this.height=options.height||20;
+    this.x=options.x||0;
+    this.y=options.y||0;
+    this.div=document.createElement('div');
+    //放置方块的父容器div
+    this.parent=parentDiv;
+    parentDiv.appendChild(this.div);
+
+//    初始化方块样式，需要调用原型对象上的init方法才有效
+//     this.init();
+    this.init();
+    this.random();
+}
+//使用原型对象来设置方块样式
+Box.prototype.init=function () {
+    var box=this.div;
+    box.style.backgroundColor=this.backgroundColor;
+    box.style.width=this.width+'px';
+    box.style.height=this.height+'px';
+    box.style.left=this.x+'px';
+    box.style.top=this.y+'px';
+    box.style.position='absolute';
+}
+//随机生成方块的位置和颜色
+Box.prototype.random=function () {
+    //根据父容器能容下的方块数量随机生成的方块数乘以一个方块宽度获得随机生成的方块起始x位移值
+    var x=Tools.getRandom(0,this.parent.offsetWidth/this.width-1)*this.width;
+    var y=Tools.getRandom(0,this.parent.offsetHeight/this.height-1)*this.height;
+    //随机生成方块背景颜色
+    var r=Tools.getRandom(0,255);
+    var g=Tools.getRandom(0,255);
+    var b=Tools.getRandom(0,255);
+    this.div.style.backgroundColor='rgb('+r+','+g+','+b+')';
+    this.div.style.left=x+'px';
+    this.div.style.top=y+'px';
+}
+var parentDiv=document.querySelector(".container");
+        //使用对象需要new一个实例对象，返回的就是当前创建的当前实例this，这样Box构造函数中才能访问其原型的属性和方法，直接使用Box()就是当做普通函数来处理,this指向的是window
+        // var box1=new Box(parentDiv);
+        // Box(parentDiv);
+        var boxArr=[];
+        for(var i=0;i<10;i++){
+            var box=new Box(parentDiv);
+            boxArr.push(box);
+        }
+        setInterval(function () {
+            for(var i=0;i<10;i++){
+                boxArr[i].random();
+            }
+        },800);
 </script>
 </body>
 </html>
